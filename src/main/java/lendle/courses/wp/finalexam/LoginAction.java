@@ -33,6 +33,18 @@ public class LoginAction extends HttpServlet {
         String password=request.getParameter("password");
         HttpSession session=request.getSession();
         //當帳號密碼正確時（使用 Logins 來取得 UserData），通過登入（記得記錄在session，存在 user 屬性中）
+        UserData user = Logins.getUserData(id);
+        if(user==null){
+            response.sendRedirect("index.jsp");
+        }else{
+            String pswd = user.getPassword();//取得user密碼
+            if(pswd == null ? password == null : pswd.equals(password)){ //檢查密碼是否正確
+                session.setAttribute("user", user); //記錄在session
+                response.sendRedirect("showNotes.jsp");
+            }else{
+                response.sendRedirect("index.jsp");
+            }
+        }
         //並轉址到 showNotes.jsp
         //否則轉址到 index.jsp
         //請使用外轉址 (30%)

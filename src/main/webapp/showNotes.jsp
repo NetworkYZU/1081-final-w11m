@@ -1,3 +1,4 @@
+<%@page import="lendle.courses.wp.finalexam.NoteHeader"%>
 <%@page import="lendle.courses.wp.finalexam.Note"%>
 <%@page import="lendle.courses.wp.finalexam.UserData"%>
 <%@ page contentType="text/html" pageEncoding="utf-8"%>
@@ -31,6 +32,20 @@
                   <th>Title</th>
                   <th>Content</th>
               </tr>
+              <%  
+                  UserData user = (UserData)session.getAttribute("user");
+                  List<Note> text = user.getNotes();
+                  for(int i=0;text!=null&&i<text.size();i++){
+                      Note note = text.get(i);
+                      NoteHeader header = note.getHeader();
+                      String date = header.getDate() ;
+                      String title = header.getTitle() ;
+                      String content = note.getContent() ;
+                      out.println("<tr><th>"+date+"</th><th>"+title+"</th><th>"+content+"</th></tr>");
+                      
+                  }
+                  
+              %>
           </thead>
           <tbody>
               
