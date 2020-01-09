@@ -38,11 +38,11 @@
                   for(int i=0;text!=null&&i<text.size();i++){
                       Note note = text.get(i);
                       NoteHeader header = note.getHeader();
-                      String date = header.getDate() ;
-                      String title = header.getTitle() ;
-                      String content = note.getContent() ;
-                      out.println("<tr><th>"+date+"</th><th>"+title+"</th><th>"+content+"</th></tr>");
-                      
+                      out.println("<tr>");
+                      out.println("<th>"+ header.getDate()+"</th>");
+                      out.println("<th>"+header.getTitle()+"</th>");
+                      out.println("<th>"+note.getContent()+"</th>");
+                      out.println("</tr>");
                   }
                   
               %>
